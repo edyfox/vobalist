@@ -28,7 +28,7 @@ file="$dir/$word"
 if [ ! -f "$file" ]; then
   mkdir -p $dir
   if [ -e "./extract-$engine.py" ]; then
-    if "./extract-$engine.py" "$word" > cache/tmp; then
+    if python "./extract-$engine.py" "$word" > cache/tmp; then
       mv -f cache/tmp "$file"
       sleep 5
     else

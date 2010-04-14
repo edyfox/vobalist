@@ -33,6 +33,6 @@ while read line; do
   else
     echo -n ','
   fi
-  ./extract.sh "$engine" "$line"
+  sh ./extract.sh "$engine" "$line"
 done
 echo '];'

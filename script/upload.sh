@@ -18,7 +18,7 @@
 set -e
 
 if [ $# -lt 1 ]; then
-  epochday=`date -d 1970-01-01 +%s`
+  epochday=`date -d 2000-01-01 +%s`
   today=`date +%s`
   days=`expr '(' $today - $epochday ')' / 86400`
 else
@@ -31,4 +31,4 @@ if [ "x$days" = "x" ]; then
   days=`expr '(' $today - $epochday ')' / 86400`
 fi
 
-./generate.sh dictcn $days > ../web/js/words.js
+sh ./generate.sh dictcn $days > ../web/js/words.js
