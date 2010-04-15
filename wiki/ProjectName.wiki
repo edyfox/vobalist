@@ -1,8 +1,0 @@
-#labels Featured
-What does the project name "vobalist" mean?  A short answer is, it was a typo.  The original proposal was "verbalist", but I typed it as "vobalist" by mistake.
-
-In [http://www.ets.org/gre/ GRE] test, "verbal" is a very cruel section.  In order to get a decent result in verbal test, you need tremendously huge vocabulary.  "Verbalist" is derived from "verbal", and means a person who has very huge vocabulary.  That's exactly what this project is designed to make you into.
-
-Unfortunately, when I created this project, I made a mistake.  So this project now is named as "vobalist".  Why not abandon this project and recreate another project with the correct name?  Well, why should I?  "Google" was also a typo at the first time, but now it's even more famous than the "correct" term "googol".  So I think sticking with the wrong name would be a good choice.
-
-Another reason to continue with the wrong name is, in case it's a "wrong" spelling, if you search for it on the search engine, you'll get nothing else but this project.  This will be an advantage if I propose to promote this project later on.
