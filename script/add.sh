@@ -17,14 +17,6 @@
 
 set -e
 
-edit() {
-  if [ x`uname` = xWindowsNT ]; then
-    notepad $1
-  else
-    sensible-editor $1
-  fi
-}
-
 if [ $# -lt 1 ]; then
   epochday=`date -d 2000-01-01 +%s`
   today=`date +%s`
@@ -35,12 +27,12 @@ fi
 
 mkdir -p ../data
 
-edit ../data/$days.txt
+sh ./editor.sh ../data/$days.txt
 
 sed -i 's/\s\+$//' ../data/$days.txt
 while [ `sort ../data/* | uniq -d | wc -l` -ne 0 ]; do
   echo "Duplicated words detected:"
   sort ../data/* | uniq -d
-  edit ../data/$days.txt
+  sh ./editor.sh ../data/$days.txt
   sed -i 's/\s\+$//' ../data/$days.txt
 done

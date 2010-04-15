@@ -15,21 +15,26 @@
 # limitations under the License.
 #
 
-set -e
+try_editor() {
+  "$@"
+  ret="$?"
+  if [ "$ret" -ne 126 ] && [ "$ret" -ne 127 ]; then
+    exit "$ret"
+  fi
+}
 
-if [ $# -lt 2 ]; then
-  echo 'Usage: generate.sh engine day'
-  exit 1
+if [ -n "$VISUAL" ]; then
+  try_editor $VISUAL "$@"
 fi
 
-engine="$1"
-today="$2"
+if [ -n "$EDITOR" ]; then
+  try_editor $EDITOR "$@"
+fi
 
-(
-for day in 0 1 2 4 7 15 30 60 90 150 240; do
-  num=`expr $today - $day`
-  if [ -f ../data/$num.txt ]; then
-    cat ../data/$num.txt
-  fi
-done
-) | ./list.sh "$engine"
+if [ x`uname` = xWindowsNT ]; then
+  try_editor notepad "$@"
+else
+  for editor in nano nano-tiny vi; do
+    try_editor "$editor" "$@"
+  done
+fi
