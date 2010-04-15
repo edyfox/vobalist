@@ -32,4 +32,4 @@ for day in 0 1 2 4 7 15 30 60 90 150 240; do
     cat ../data/$num.txt
   fi
 done
-) | ./list.sh "$engine"
+) | sh ./list.sh "$engine"
