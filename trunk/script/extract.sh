@@ -30,7 +30,6 @@ if [ ! -f "$file" ]; then
   if [ -e "./extract-$engine.py" ]; then
     if python "./extract-$engine.py" "$word" > cache/tmp; then
       mv -f cache/tmp "$file"
-      sleep 5
     else
       rm -f cache/tmp
       exit 1
