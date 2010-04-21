@@ -14,8 +14,6 @@
   limitations under the License.
 */
 
-var wrong = [];
-var total = data.length;
 var finished = false;
 
 function render(obj) {
@@ -32,7 +30,7 @@ function render(obj) {
   pronun.innerHTML = "";
   meaning.innerText = "";
   examples.innerHTML = "";
-  progress.innerText = data.length + "/" + total;
+  renderProgress();
 
   show = (function() {
     meaning.innerText = obj.trans;
@@ -44,7 +42,7 @@ function render(obj) {
     yes.onclick = nextWord;
     // Override the default "onclick" for button "Don't know".
     no.onclick = (function() {
-      wrong.push(obj);
+      addWrongWord(obj);
       nextWord();
     });
     show();
@@ -53,20 +51,25 @@ function render(obj) {
   no.onclick = (function() {
     yes.disabled = true;
     no.onclick = nextWord;
-    wrong.push(obj);
+    addWrongWord(obj);
     show();
   });
 }
 
 function finishRender() {
-  document.getElementById("result").innerText = "";
-  document.getElementById("yes").disabled = true;
-  document.getElementById("no").disabled = true;
-  document.getElementById("pronun").innerHTML = "";
-  document.getElementById("meaning").innerText = "";
-  document.getElementById("examples").innerHTML = "";
-  document.getElementById("progress").innerText = "Finished";
-  finished = true;
+  if (nextPartition()) {
+    nextWord();
+  } else {
+    document.getElementById("result").innerText = "";
+    document.getElementById("yes").disabled = true;
+    document.getElementById("no").disabled = true;
+    document.getElementById("pronun").innerHTML = "";
+    document.getElementById("meaning").innerText = "";
+    document.getElementById("examples").innerHTML = "";
+    document.getElementById("progress").innerText = "Finished";
+    document.getElementById("split").disabled = true;
+    finished = true;
+  }
 }
 
 function nextWord() {
@@ -82,6 +85,7 @@ function nextWord() {
   }
   var index = Math.floor(Math.random() * data.length);
   var obj = data[index];
-  render(obj);
   data.splice(index, 1);
+  pending = 1;
+  render(obj);
 }

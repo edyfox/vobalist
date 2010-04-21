@@ -14,25 +14,22 @@
   limitations under the License.
 */
 
-var wrong = [];
-var total = data.length;
 var finished = false;
 
 function render(obj) {
   var result = document.getElementById("result");
-  var button = document.getElementById("button");
+  var go = document.getElementById("go");
   var pronun = document.getElementById("pronun");
   var meaning = document.getElementById("meaning");
   var examples = document.getElementById("examples");
   var form = document.getElementById("form");
-  var progress = document.getElementById("progress");
 
   result.value = obj.word[0];
 
   pronun.innerHTML = "";
   meaning.innerText = obj.trans;
   examples.innerHTML = "";
-  progress.innerText = data.length + "/" + total;
+  renderProgress();
 
   form.onsubmit = (function() {
     form.onsubmit = (function() {
@@ -46,21 +43,27 @@ function render(obj) {
     } else {
       result.value = obj.word;
       result.className = "wrong";
-      wrong.push(obj);
+      addWrongWord(obj);
     }
-    button.value = "Next";
+    go.value = "Next";
     return false;
   });
 }
 
 function finishRender() {
-  document.getElementById("result").value = "";
-  document.getElementById("button").disabled = true;
-  document.getElementById("pronun").innerHTML = "";
-  document.getElementById("meaning").innerText = "";
-  document.getElementById("examples").innerHTML = "";
-  document.getElementById("progress").innerText = "Finished";
-  finished = true;
+  if (nextPartition()) {
+    nextWord();
+  } else {
+    document.getElementById("result").value = "";
+    document.getElementById("go").disabled = true;
+    document.getElementById("pronun").innerHTML = "";
+    document.getElementById("meaning").innerText = "";
+    document.getElementById("examples").innerHTML = "";
+    document.getElementById("progress").innerText = "Finished";
+    document.getElementById("split").disabled = true;
+    document.getElementById("splitbtn").disabled = true;
+    finished = true;
+  }
 }
 
 function nextWord() {
@@ -75,12 +78,13 @@ function nextWord() {
     }
   }
 
-  var button = document.getElementById("button");
-  button.value = "Go";
+  var go = document.getElementById("go");
+  go.value = "Go";
   var index = Math.floor(Math.random() * data.length);
   var obj = data[index];
-  render(obj);
   data.splice(index, 1);
+  pending = 1;
+  render(obj);
   var result = document.getElementById("result");
   result.className = "normal";
   result.focus();

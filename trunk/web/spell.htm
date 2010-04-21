@@ -25,6 +25,7 @@
 <script language="javascript" src="js/ips.js"></script>
 <script language="javascript" src="js/render.js"></script>
 <script language="javascript" src="js/words.js"></script>
+<script language="javascript" src="js/split.js"></script>
 <script language="javascript" src="js/spell.js"></script>
 <script language="javascript" src="js/guard.js"></script>
 </head>
@@ -32,12 +33,18 @@
 <body onload="nextWord()">
   <form id="form" action="#" method="post">
     <input id="result" class="normal" />
-    <input id="button" type="submit" value="Go" />
-    <div id="pronun"></div>
-    <div id="meaning"></div>
-    <div id="examples"></div>
-    <div id="progress"></div>
+    <input id="go" type="submit" value="Go" />
   </form>
+  <div id="pronun"></div>
+  <div id="meaning"></div>
+  <div id="examples"></div>
+  <div id="progress"></div>
+  <div>
+    Split to
+    <input id="split" value="1" />
+    partitions
+    <input id="splitbtn" type="button" value="Split" onclick="split()" />
+  </div>
 </body>
 
 </html>
