@@ -24,13 +24,20 @@ ul {
   font-family: Times New Roman, serif;
   font-size: 12pt;
 }
-#result, input[type="button"], input[type="submit"] {
+#result, input[type="submit"] {
   font-family: Times New Roman, serif;
   font-size: 16pt;
 }
 #result {
   width: 220px;
   ime-mode: disabled;
+}
+#split {
+  width: 3em;
+  ime-mode: disabled;
+}
+#progress {
+  margin-top: 2em;
 }
 .correct {
   background-color: #ccffcc;
