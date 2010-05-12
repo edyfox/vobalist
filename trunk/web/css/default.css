@@ -24,7 +24,7 @@ ul {
   font-family: Times New Roman, serif;
   font-size: 12pt;
 }
-#result, input[type="submit"] {
+#result, #yes, #no, #go {
   font-family: Times New Roman, serif;
   font-size: 16pt;
 }
