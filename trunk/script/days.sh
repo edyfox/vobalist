@@ -15,12 +15,19 @@
 # limitations under the License.
 #
 
-set -e
+case "`uname`" in
+  FreeBSD )
+      epochday=`date -j 200001010000 +%s`
+      today=`date +%s`
+      ;;
+  Darwin )
+      epochday=`date -j 010100002000 +%s`
+      today=`date +%s`
+      ;;
+  Linux | CYGWIN* | Windows* )
+      epochday=`date -d 2000-01-01 +%s`
+      today=`date +%s`
+      ;;
+esac
 
-if [ $# -lt 1 ]; then
-  days=`sh ./days.sh`
-else
-  days=$1
-fi
-
-sh ./generate.sh dictcn $days > ../web/js/words.js
+expr '(' $today - $epochday ')' / 86400

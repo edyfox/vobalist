@@ -18,9 +18,7 @@
 set -e
 
 if [ $# -lt 1 ]; then
-  epochday=`date -d 2000-01-01 +%s`
-  today=`date +%s`
-  days=`expr '(' $today - $epochday ')' / 86400`
+  days=`sh ./days.sh`
 else
   days=$1
 fi
