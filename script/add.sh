@@ -34,7 +34,7 @@ while [ `sort ../data/* | uniq -d | wc -l` -ne 0 ]; do
   echo "Duplicated words detected:"
   sort ../data/* | uniq -d
   echo "Press enter to continue..."
-  read
+  read nil
   sh ./editor.sh ../data/$days.txt
   sed -i 's/\s\+$//' ../data/$days.txt
 done
