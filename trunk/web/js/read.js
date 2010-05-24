@@ -26,14 +26,14 @@ function render(obj) {
   var progress = document.getElementById("progress");
 
   yes.disabled = false;
-  result.innerText = obj.word;
+  result.innerHTML = htmlEncode(obj.word);
   pronun.innerHTML = "";
-  meaning.innerText = "";
+  meaning.innerHTML = "";
   examples.innerHTML = "";
   renderProgress();
 
   show = (function() {
-    meaning.innerText = obj.trans;
+    meaning.innerHTML = htmlEncode(obj.trans);
     renderIps(pronun, obj.pronun);
     renderExamples(examples, obj.examples);
   });
@@ -60,13 +60,13 @@ function finishRender() {
   if (nextPartition()) {
     nextWord();
   } else {
-    document.getElementById("result").innerText = "";
+    document.getElementById("result").innerHTML = "";
     document.getElementById("yes").disabled = true;
     document.getElementById("no").disabled = true;
     document.getElementById("pronun").innerHTML = "";
-    document.getElementById("meaning").innerText = "";
+    document.getElementById("meaning").innerHTML = "";
     document.getElementById("examples").innerHTML = "";
-    document.getElementById("progress").innerText = "Finished";
+    document.getElementById("progress").innerHTML = "Finished";
     document.getElementById("split").disabled = true;
     finished = true;
   }

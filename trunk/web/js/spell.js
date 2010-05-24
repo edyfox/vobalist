@@ -27,7 +27,7 @@ function render(obj) {
   result.value = obj.word[0];
 
   pronun.innerHTML = "";
-  meaning.innerText = obj.trans;
+  meaning.innerHTML = htmlEncode(obj.trans);
   examples.innerHTML = "";
   renderProgress();
 
@@ -57,9 +57,9 @@ function finishRender() {
     document.getElementById("result").value = "";
     document.getElementById("go").disabled = true;
     document.getElementById("pronun").innerHTML = "";
-    document.getElementById("meaning").innerText = "";
+    document.getElementById("meaning").innerHTML = "";
     document.getElementById("examples").innerHTML = "";
-    document.getElementById("progress").innerText = "Finished";
+    document.getElementById("progress").innerHTML = "Finished";
     document.getElementById("split").disabled = true;
     document.getElementById("splitbtn").disabled = true;
     finished = true;

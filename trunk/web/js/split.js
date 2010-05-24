@@ -26,7 +26,7 @@ function addWrongWord(word) {
 
 function renderProgress() {
   var progress = document.getElementById("progress");
-  progress.innerText = "Current partition: " +
+  progress.innerHTML = "Current partition: " +
       (data.length + 1) + " remaining, " +
       wrong.length + " wrong, " +
       total + " total (" +
