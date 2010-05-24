@@ -14,6 +14,17 @@
   limitations under the License.
 */
 
+function htmlEncode(str) {
+  var result = str;
+  result = result.replace("&", "&amp;");
+  result = result.replace("<", "&lt;");
+  result = result.replace(">", "&gt;");
+  result = result.replace("'", "&apos;");
+  result = result.replace("\"", "&quot;");
+  result = result.replace("\n", "<br />");
+  return result;
+}
+
 function renderIps(obj, text) {
   for (var i = 0; i < text.length; ++i) {
     var img = document.createElement("img");
@@ -32,7 +43,7 @@ function renderExamples(control, obj) {
   for (var index in obj) {
     var sentence = obj[index];
     var li = document.createElement("li");
-    li.innerText = sentence.orig + "\n" + sentence.trans;
+    li.innerHTML = htmlEncode(sentence.orig + "\n" + sentence.trans);
     list.appendChild(li);
   }
   control.appendChild(list);
