@@ -15,6 +15,17 @@
 # limitations under the License.
 #
 
+run_md5() {
+  case "`uname`" in
+    FreeBSD | Darwin )
+      md5
+      ;;
+    Linux | CYGWIN* | Windows* )
+      md5sum
+      ;;
+  esac
+}
+
 if [ $# -lt 2 ]; then
   echo Usage: extract.sh engine word
   exit 1
@@ -22,7 +33,7 @@ fi
 
 engine="$1"
 word="$2"
-dir=cache/`echo "$word" | md5sum | sed -n 's,^\(.\)\(.\).*,\1/\2,p'`
+dir=cache/`echo "$word" | run_md5 | sed -n 's,^\(.\)\(.\).*,\1/\2,p'`
 file="$dir/$word"
 
 if [ ! -f "$file" ]; then

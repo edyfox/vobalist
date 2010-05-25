@@ -17,6 +17,18 @@
 
 set -e
 
+trim() {
+  src="$1"
+  dest="$1.new"
+  mv "$src" "$dest"
+  sed '
+      s/^[ 	]*//
+      s/[ 	]*$//
+      /^[ 	]*$/ d
+      ' "$dest" > "$src"
+  rm -f "$dest"
+}
+
 if [ $# -lt 1 ]; then
   days=`sh ./days.sh`
 else
@@ -27,12 +39,12 @@ mkdir -p ../data
 
 sh ./editor.sh ../data/$days.txt
 
-sed -i 's/\s\+$//' ../data/$days.txt
+trim ../data/$days.txt
 while [ `sort ../data/* | uniq -d | wc -l` -ne 0 ]; do
   echo "Duplicated words detected:"
   sort ../data/* | uniq -d
   echo "Press enter to continue..."
   read nil
   sh ./editor.sh ../data/$days.txt
-  sed -i 's/\s\+$//' ../data/$days.txt
+  trim ../data/$days.txt
 done
