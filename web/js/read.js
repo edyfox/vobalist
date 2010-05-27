@@ -89,3 +89,10 @@ function nextWord() {
   pending = 1;
   render(obj);
 }
+
+function init() {
+  document.getElementById("yes").disabled = false;
+  document.getElementById("no").disabled = false;
+  document.getElementById("split").disabled = false;
+  nextWord();
+}

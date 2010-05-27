@@ -89,3 +89,10 @@ function nextWord() {
   result.className = "normal";
   result.focus();
 }
+
+function init() {
+  document.getElementById("go").disabled = false;
+  document.getElementById("split").disabled = false;
+  document.getElementById("splitbtn").disabled = false;
+  nextWord();
+}
