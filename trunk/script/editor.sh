@@ -32,7 +32,7 @@ if [ -n "$EDITOR" ]; then
 fi
 
 if [ x`uname` = xWindowsNT ]; then
-  try_editor notepad "$@"
+  try_editor cmd /c start /w notepad "$@"
 else
   for editor in nano nano-tiny vi; do
     try_editor "$editor" "$@"
